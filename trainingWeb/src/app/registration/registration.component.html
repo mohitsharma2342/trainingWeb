@@ -1,0 +1,160 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>This is a simpleRegister Form made using Boostrap.</p>
+                </div>
+
+                
+                <div class="row"  *ngIf="registrationSuccessMsg">
+                        <div class="col-xs-12">
+                            <p class="alert alert-success">
+                                <strong>You are Succesfully registered</strong>
+
+                            </p>
+                        </div>
+                </div>
+                
+                
+                <div class="form-content">
+                     <form class="form"   [formGroup]="registrationForm"    (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="firstName" placeholder="First Name *" value=""/>
+                                <div *ngIf="f.firstName.touched && f.firstName.invalid" class="alert alert-danger">
+                                <div *ngIf="f.firstName.errors.required">Name is required.</div>
+                                <div *ngIf="f.firstName.errors.minlength">Name should be 3 character.</div>
+                            </div>
+                            
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name *" value=""/>
+                                <div *ngIf="f.lastName.touched && f.lastName.invalid" class="alert alert-danger">
+                                <div *ngIf="f.lastName.errors.required">Name is required.</div>
+                                <div *ngIf="f.lastName.errors.minlength">Name should be 3 character.</div>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="password" placeholder="Password" value=""/>
+                                <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+                                <div *ngIf="f.password.errors.required">password is required.</div>
+                                <div *ngIf="f.password.errors.minlength">Name should be 3 character.</div>
+                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="confirmPassword" placeholder="Confirm Password*" value=""/>
+                                 <div *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid" class="alert alert-danger">
+                                <div *ngIf="f.confirmPassword.errors.required">password is required.</div>
+                                <div *ngIf="f.confirmPassword.errors.mustMatch">Password Must Match.</div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                             <div class="form-group">
+                                <input type="text" class="form-control" (change)="checkUserExist()" formControlName="emailId" placeholder="Email Id*" value=""/>
+                                <div *ngIf="isUserExit" class="alert alert-danger">Email already exist</div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="mobNumber" placeholder="Mobile Number *" value=""/>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                              <div class="form-group">
+                            <select  class="browser-default custom-select" id="role"   (change)="selectRole()" formControlName="roleName">
+                             <option [ngValue]="null" disabled>Choose your profile</option>
+                              <option *ngFor="let userRole of userRoless"    [ngValue]="userRole" >
+                                {{userRole.roleName}}
+                           </option>
+                        </select> 
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6">
+                              <div class="form-group">
+                          <select class="browser-default custom-select"  formControlName="gender">
+                            <option selected>Select Gender</option>
+                            <option value="1">Male </option>
+                             <option value="2">Female</option>
+                            </select>
+                            </div>
+                        </div>
+                     </div>
+                        
+                <div class="row" *ngIf="traineeField">
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="highestQualification" placeholder="Highest Qualification *" value=""/>
+                               <!-- <div *ngIf="f.highestQualification.touched && f.highestQualification.invalid" class="alert alert-danger"></div>
+                                <div *ngIf="f.highestQualification.errors.required">Name is required.</div>
+                                <div *ngIf="f.highestQualification.errors.minlength">Name should be 3 character.</div>-->
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="primarySkill" placeholder="Primary Skill *" value=""/>
+                               <!-- <div *ngIf="f.primarySkill.touched && f.primarySkill.invalid" class="alert alert-danger">
+                                <div *ngIf="f.primarySkill.errors.required">Name is required.</div>
+                                <div *ngIf="f.primarySkill.errors.minlength">Name should be 3 character.</div>
+                                 </div>-->
+                            </div>
+                    </div>     
+                    </div>
+                
+                    <div class="row" *ngIf="trainerField">
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="certification" placeholder="Certification *" value=""/>
+                                <!--<div *ngIf="f.certification.touched && f.certification.invalid" class="alert alert-danger"></div>
+                                <div *ngIf="f.certification.errors.required">Name is required.</div>
+                                <div *ngIf="f.certification.errors.minlength">Name should be 3 character.</div>-->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="expeprience" placeholder="Expeprience *" value=""/>
+                               <!-- <div *ngIf="f.expeprience.touched && f.expeprience.invalid" class="alert alert-danger"></div>
+                                <div *ngIf="f.expeprience.errors.required">Name is required.</div>
+                                <div *ngIf="f.expeprience.errors.minlength">Name should be 3 character.</div>-->
+                                 
+                            </div>
+                    </div>     
+                </div>
+                        
+                        
+                        
+                 <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="address" placeholder="Address *" value=""/>
+                            </div>
+                        </div>
+                    </div>
+                     
+               
+                <button type="submit"   [disabled]="!registrationForm.valid" class="btnSubmit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            
+             <a routerLink="/login" routerLinkActive="active"><h1 style="font-size: 1.3rem;color: #1976d2;">Login with Spring Security</h1></a>
+            <a (click)="loginWithOkta()" routerLinkActive="active"><h1 style="font-size: 1.3rem;color: #1976d2;">Login With Okta</h1></a>
+       
+        <a (click)="oktaAuth.logout()" *ngIf="isAuthenticated"><h1 style="font-size: 1.3rem ;color: #1976d2">Logout</h1></a>
+        </div>
+      
+           

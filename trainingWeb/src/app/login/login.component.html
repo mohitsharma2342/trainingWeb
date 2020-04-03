@@ -1,0 +1,45 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>This is a simpleRegister Form made using Boostrap.</p>
+                </div>
+
+               
+
+                <div class="form-content">
+                      <form class="form"   [formGroup]="loginForm"    (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="emailId" placeholder="Email Id*" value=""/>
+                            </div>
+                         </div>
+                            
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="password" placeholder="Password" value=""/>
+                               <!-- <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger"></div>
+                                <div *ngIf="f.password.errors.required">password is required.</div>-->
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <button type="Submit
+                    " class="btnSubmit">Submit</button>
+                    </form>
+                      <div class="row"  *ngIf="isLoggedIn">
+                        <div class="col-xs-12">
+                            <p class="alert alert-success">
+                                <strong>You are Succesfully logged in</strong>
+
+                            </p>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
